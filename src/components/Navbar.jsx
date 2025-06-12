@@ -144,10 +144,14 @@ const Navbar = () => {
                   ))}
                 </div>
                 <div className="bg-blue-600 text-white py-1 px-2 m-2 rounded text-[10px]">
-                  <a href="#" className="flex items-center">
-                    View all products
-                    <ChevronDown className="ml-1 w-3 h-3 rotate-[-90deg]" />
-                  </a>
+                  <button
+  className="flex items-center text-white hover:text-orange-400 text-[10px]"
+  onClick={() => console.log("View all products clicked")}
+>
+  View all products
+  <ChevronDown className="ml-1 w-3 h-3 rotate-[-90deg]" />
+</button>
+
                 </div>
               </div>
 
