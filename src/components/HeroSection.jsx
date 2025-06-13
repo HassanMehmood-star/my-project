@@ -6,112 +6,84 @@ import animatedImage from "../images/animated.jpg";
 const HeroSection = () => {
   const [isFirstImage, setIsFirstImage] = useState(true);
 
-  // Log imported image paths to verify
-  console.log("Imported earthImage path:", earthImage);
-  console.log("Imported animatedImage path:", animatedImage);
-
-  // Handler for the first carousel dot (shows earthImage)
-  const showEarthImage = (e) => {
-    console.log("You clicked on the first carousel at:", new Date().toLocaleTimeString());
-    console.log("Event target:", e.target);
-    console.log("Setting isFirstImage to true (Earth Image)");
-    setIsFirstImage(true);
-    console.log("Post-click state (immediate):", true);
-  };
-
-  // Handler for the second carousel dot (shows animatedImage)
-  const showAnimatedImage = (e) => {
-    console.log("You clicked on the second carousel at:", new Date().toLocaleTimeString());
-    console.log("Event target:", e.target);
-    console.log("Setting isFirstImage to false (Animated Image)");
-    setIsFirstImage(false);
-    console.log("Post-click state (immediate):", false);
-  };
-
-  // Log current state and image source on every render
-  console.log("Rendering HeroSection. Current isFirstImage state:", isFirstImage);
-  console.log("Current background image source:", isFirstImage ? earthImage : animatedImage);
-
   return (
-    <div className="relative w-full min-h-screen overflow-hidden text-white">
+    <div className="relative w-full min-h-screen text-white overflow-hidden">
       {/* Background Image */}
       <img
         src={isFirstImage ? earthImage : animatedImage}
         alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500"
-        onError={() => console.error("Error loading background image:", isFirstImage ? "Earth Image" : "Animated Image")}
-        onLoad={() => console.log("Background image loaded:", isFirstImage ? "Earth Image" : "Animated Image")}
+        className="absolute inset-0 w-full h-full object-cover object-center z-0 transition duration-700"
       />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
 
-      {/* Vertical Navigation Controls */}
-   <div className="absolute left-1 sm:left-4 md:left-6 lg:left-8 top-1/4 -mt-6 sm:mt-0 sm:top-1/3 transform -translate-y-1/3 flex flex-col items-center space-y-2 sm:space-y-4 z-30">
-
-
+      {/* Vertical Switch Buttons */}
+      <div className="absolute left-2 xs:left-3 sm:left-4 top-36 sm:top-1/4 transform -translate-y-1/2 flex flex-col gap-1.5 z-30">
         <div
-          onClick={showEarthImage}
-          className={`w-1.5 h-12 md:h-16 cursor-pointer pointer-events-auto transition ${
-            isFirstImage ? "bg-blue-600 hover:bg-blue-800" : "bg-gray-600 hover:bg-gray-800"
+          onClick={() => setIsFirstImage(true)}
+          className={`w-1 xs:w-2 h-8 xs:h-10 sm:h-12 cursor-pointer transition ${
+            isFirstImage ? "bg-blue-600" : "bg-gray-600"
           }`}
         />
         <div
-          onClick={showAnimatedImage}
-          className={`w-1.5 h-12 md:h-16 cursor-pointer pointer-events-auto transition ${
-            !isFirstImage ? "bg-blue-600 hover:bg-blue-800" : "bg-gray-600 hover:bg-gray-800"
+          onClick={() => setIsFirstImage(false)}
+          className={`w-1 xs:w-2 h-8 xs:h-10 sm:h-12 cursor-pointer transition ${
+            !isFirstImage ? "bg-blue-600" : "bg-gray-600"
           }`}
         />
       </div>
 
-      {/* Content Wrapper */}
-      <div className="relative z-20 flex flex-col justify-between min-h-screen px-4 sm:px-6 md:px-8 lg:px-16 py-6 sm:py-8 md:py-12">
+      {/* Content */}
+      <div className="relative z-20 flex flex-col justify-between min-h-screen px-4 xs:px-6 sm:px-10 lg:px-20 pt-24 xs:pt-32 sm:pt-40 lg:pt-52 xl:pt-64 pb-6 sm:pb-10">
         {/* Hero Text */}
-        <div className="flex flex-col justify-center text-left space-y-4 sm:space-y-6 max-w-5xl w-full pt-16 sm:pt-20 md:pt-24 lg:pt-32">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight sm:leading-snug">
+        <div className="max-w-6xl w-full space-y-4 text-center sm:text-left">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
             Simplify and Optimize Global Procurement
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl">
+          <p className="text-sm xs:text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-200 leading-relaxed">
             Your partner in finding suppliers, reducing costs, and simplifying logistics
           </p>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 sm:py-2 sm:px-4 text-sm sm:text-xs rounded shadow transition transform hover:scale-105 flex items-center w-max mt-2">
+          <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2.5 px-4 xs:py-3 xs:px-6 rounded shadow-md transition transform hover:scale-105 flex items-center w-max mx-auto sm:mx-0 text-xs xs:text-sm sm:text-base">
             TRY 11GS FOR FREE
-            <ArrowRight className="ml-2 h-4 w-4 sm:ml-1 sm:h-3 sm:w-3" />
+            <ArrowRight className="ml-1.5 h-3.5 w-3.5 xs:h-4 xs:w-4" />
           </button>
         </div>
 
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 max-w-7xl w-full mb-4">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 mt-8 sm:mt-10 w-full px-0 sm:pl-0 sm:pr-6 lg:pl-0 lg:pr-12">
           {[
             {
               title: "No Middlemen",
-              desc: "11GS delivers global supply chain solutions, helping businesses find suppliers, optimize logistics, and focus on cost savings and sustainable growth.",
+              desc: "11GS delivers global supply chain solutions, helping businesses find suppliers, optimize logistics, and focus on cost savings and sustainable growth,11GS delivers global supply chain solutions, helping businesses find suppliers, optimize logistics, and focus on cost savings and sustainable growth",
               btn: "Let's Create",
             },
             {
               title: "Streamline Your Procurement",
-              desc: "11GS optimizes global supply chains with customized strategies to cut costs, boost efficiency, and reduce risks. Reach out for a tailored cost-saving plan.",
+              desc: "11GS optimizes global supply chains with customized strategies to cut costs, boost efficiency, and reduce risks. Reach out for a tailored cost-saving plan11GS delivers global supply chain solutions, helping businesses find suppliers, optimize logistics, and focus on cost savings and sustainable growth",
               btn: "Expert on demand",
             },
             {
               title: "One-Stop Shop",
-              desc: "11GS provides custom supply chain solutions to streamline operations, cut waste, and improve efficiency, letting you focus on growth with effortless strategies.",
+              desc: "11GS provides custom supply chain solutions to streamline operations, cut waste, and improve efficiency, letting you focus on growth with effortless strategies11GS delivers global supply chain solutions, helping businesses find suppliers, optimize logistics, and focus on cost savings and sustainable growth",
               btn: "11GS STRATEGY",
             },
           ].map((card, i) => (
             <div
               key={i}
-              className="bg-gray-500/30 backdrop-blur-sm border border-gray-400/20 rounded-md p-3 sm:p-4"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 xs:p-6 w-full min-h-[180px] xs:min-h-[200px] sm:min-h-[220px] lg:min-h-[260px] flex flex-col justify-between"
             >
-              <h3 className="text-sm md:text-base font-semibold text-white mb-1">
-                {card.title}
-              </h3>
-              <p className="text-xs md:text-sm text-gray-200 mb-2 leading-snug">
-                {card.desc}
-              </p>
-              <button className="text-orange-400 text-xs md:text-sm flex items-center hover:text-cyan-300 transition-colors font-medium">
+              <div>
+                <h3 className="text-base xs:text-lg sm:text-xl font-semibold text-white mb-1.5 xs:mb-2">
+                  {card.title}
+                </h3>
+                <p className="text-xs xs:text-sm sm:text-base text-gray-200 mb-3 leading-relaxed">
+                  {card.desc}
+                </p>
+              </div>
+              <button className="text-orange-400 hover:text-cyan-300 text-xs xs:text-sm font-medium flex items-center transition">
                 {card.btn}
-                <ArrowRight className="ml-1 h-3 w-3" />
+                <ArrowRight className="ml-1 h-3.5 w-3.5 xs:h-4 xs:w-4" />
               </button>
             </div>
           ))}
